@@ -1,0 +1,13 @@
+Create Authors table
+CREATE TABLE Authors (
+    author_id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(100) NOT NULL
+);
+
+Insert 5 authors
+INSERT INTO Authors (name) VALUES 
+('J.K. Rowling'),
+('George R.R. Martin'),
+('J.R.R. Tolkien'),
+('Agatha Christie'),
+('Stephen King');
