@@ -1,0 +1,82 @@
+-- create
+CREATE TABLE author(
+  author_id INTEGER PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(30) NOT NULL,
+  birth_yr INTEGER
+);
+
+CREATE TABLE books(
+  book_id INTEGER PRIMARY KEY AUTO_INCREMENT,
+  title VARCHAR(200) NOT NULL,
+  author_id INTEGER,
+  published_yr DATE,
+  genre VARCHAR(30),
+  CONSTRAINT fk_author FOREIGN KEY (author_id) REFERENCES author(author_id)
+);
+
+CREATE TABLE members(
+  member_id INTEGER PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(30) NOT NULL,
+  email VARCHAR(30) UNIQUE NOT NULL,
+  join_date DATE
+);
+
+CREATE TABLE borrowedBooks(
+  borrow_id INTEGER PRIMARY KEY AUTO_INCREMENT,
+  book_id INTEGER,
+  member_id INTEGER,
+  borrow_date DATE NOT NULL,
+  return_date DATE,
+  CONSTRAINT fk_book FOREIGN KEY (book_id) REFERENCES books(book_id),
+  CONSTRAINT fk_member FOREIGN KEY (member_id) REFERENCES members(member_id)
+);
+
+-- insert
+
+-- Task 1: Insert at least 5 authors, 5 books, and 3 members
+INSERT INTO author (name, birth_yr) VALUES
+('J.K. Rowling', 1965),
+('George R.R. Martin', 1948),
+('Stephen King', 1947),
+('Agatha Christie', 1890),
+('Haruki Murakami', 1949);
+
+INSERT INTO books (title, author_id, published_yr, genre) VALUES
+('Harry Potter and the Philosopher\'s Stone', 1, '1997-06-26', 'Fantasy'),
+('A Game of Thrones', 2, '1996-08-01', 'Fantasy'),
+('The Shining', 3, '1977-01-28', 'Horror'),
+('Murder on the Orient Express', 4, '1934-01-01', 'Mystery'),
+('Norwegian Wood', 5, '1987-09-04', 'Fiction');
+
+INSERT INTO members (name, email, join_date) VALUES
+('Alice Johnson', 'alice@example.com', '2020-01-15'),
+('Bob Smith', 'bob@example.com', '2019-05-22'),
+('Charlie Brown', 'charlie@example.com', '2021-03-30');
+
+-- fetch
+
+-- Task 2: Find all books published after the year 2000
+SELECT * FROM books WHERE YEAR(published_yr) > 2000;
+
+-- Task 3: Get a list of members who have borrowed at least one book
+SELECT DISTINCT m.name
+FROM members m
+JOIN borrowedBooks bb ON m.member_id = bb.member_id;
+
+-- Task 4: Retrieve all books along with their author's name
+SELECT b.title, a.name AS author_name
+FROM books b
+JOIN author a ON b.author_id = a.author_id;
+
+-- Task 5: Find all books that have been borrowed but not yet returned
+SELECT b.title
+FROM books b
+JOIN borrowedBooks bb ON b.book_id = bb.book_id
+WHERE bb.return_date IS NULL;
+
+-- Task 6: Count how many books each author has written
+SELECT a.name, COUNT(b.book_id) AS book_count
+FROM author a
+LEFT JOIN books b ON a.author_id = b.author_id
+GROUP BY a.name;
+
