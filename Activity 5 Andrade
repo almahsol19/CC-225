@@ -1,0 +1,85 @@
+
+-- create
+CREATE TABLE Doctors (
+    doctor_id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(100) NOT NULL,
+    specialty VARCHAR(100) NOT NULL,
+    years_of_experience INT NOT NULL
+);
+
+CREATE TABLE Patients (
+    patient_id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(100) NOT NULL,
+    age INT NOT NULL,
+    gender ENUM('Male', 'Female', 'Other') NOT NULL,
+    contact_details VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE Appointments (
+    appointment_id INT PRIMARY KEY AUTO_INCREMENT,
+    patient_id INT,
+    doctor_id INT,
+    appointment_date DATE NOT NULL,
+    status ENUM('Scheduled', 'Completed', 'Cancelled') NOT NULL,
+    FOREIGN KEY (patient_id) REFERENCES Patients(patient_id),
+    FOREIGN KEY (doctor_id) REFERENCES Doctors(doctor_id)
+);
+
+CREATE TABLE Treatments (
+    treatment_id INT PRIMARY KEY AUTO_INCREMENT,
+    appointment_id INT,
+    diagnosis TEXT NOT NULL,
+    prescribed_medication TEXT NOT NULL,
+    treatment_date DATE NOT NULL,
+    FOREIGN KEY (appointment_id) REFERENCES Appointments(appointment_id)
+);
+-- insert
+INSERT INTO Doctors (name, specialty, years_of_experience) 
+VALUES
+('Dr. Topz', 'Cardiology', 15),
+('Dr. Who', 'Neurology', 10),
+('Dr. Disrespect', 'Pediatrics', 8),
+('Dr. Tank', 'Orthopedics', 20);
+
+INSERT INTO Patients (name, age, gender, contact_details) 
+VALUES
+('Miranda Jameson', 30, 'Female', 'mirandz@email.com'),
+('Albert Martinez', 60, 'Male', 'bert@email.com'),
+('Walter White', 52, 'Male', 'Heisenberg@email.com');
+
+INSERT INTO Appointments (patient_id, doctor_id, appointment_date, status) 
+VALUES
+(1, 1, '2025-02-27', 'Scheduled'),
+(2, 2, '2025-02-25', 'Completed'),
+(3, 3, '2025-02-20', 'Completed');
+
+INSERT INTO Treatments (appointment_id, diagnosis, prescribed_medication, treatment_date) 
+VALUES
+(2, 'Migraine', 'Painkillers and rest', '2025-02-25'),
+(3, 'Cancer', 'Cancer Pills', '2010-09-0'7);
+
+-- fetch 
+-- 1. List all doctors with their specialty and experience
+SELECT name, specialty, years_of_experience FROM Doctors;
+
+-- 2. Find all upcoming appointments that are still scheduled
+SELECT * FROM Appointments WHERE status = 'Scheduled';
+
+-- 3. Count how many patients each doctor has treated
+SELECT d.name, COUNT(a.patient_id) AS patient_count
+FROM Doctors d
+JOIN Appointments a ON d.doctor_id = a.doctor_id
+WHERE a.status = 'Completed'
+GROUP BY d.name;
+
+-- 4. Retrieve all patients who have received treatments, along with their diagnosis
+SELECT p.name, t.diagnosis
+FROM Patients p
+JOIN Appointments a ON p.patient_id = a.patient_id
+JOIN Treatments t ON a.appointment_id = t.appointment_id;
+
+-- 5. Find the most experienced doctor in the hospital
+SELECT name, specialty, years_of_experience
+FROM Doctors
+ORDER BY years_of_experience DESC
+LIMIT 1;
