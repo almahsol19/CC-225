@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FinTrack – Smart Money Management</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Login/Signup Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <h2>Welcome to FinTrack</h2>
+            <p>Log in or sign up to continue</p>
+            <input type="text" id="username" placeholder="Username" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <button class="btn" onclick="login()">Login</button>
+            <p>Don't have an account? <a href="#">Sign up</a></p>
+        </div>
+    </div>
+
+    <!-- Landing Page Content -->
+    <header>
+        <div class="logo">FinTrack</div>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Features</a></li>
+                <li><a href="#">Pricing</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="#" class="btn">Get Started</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Take Control of Your Finances with FinTrack</h1>
+            <p>Manage your expenses, track your savings, and achieve financial freedom.</p>
+            <a href="#" class="btn">Get Started</a>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="feature">
+            <h2>Track Expenses</h2>
+            <p>Monitor your spending and stay within your budget.</p>
+        </div>
+        <div class="feature">
+            <h2>Smart Insights</h2>
+            <p>Receive AI-powered financial recommendations.</p>
+        </div>
+        <div class="feature">
+            <h2>Secure & Private</h2>
+            <p>Your financial data is encrypted and protected.</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2025 FinTrack. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Show login modal on page load
+        window.onload = function() {
+            document.getElementById("loginModal").style.display = "flex";
+        };
+
+        function login() {
+            document.getElementById("loginModal").style.display = "none";
+        }
+    </script>
+
+</body>
+</html>
+
+
+//css
+
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+// Login Modal 
+.modal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 300px;
+    text-align: center;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.btn {
+    background: #3498db;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    color: white;
+    display: inline-block;
+    width: 100%;
+    border: none;
+    cursor: pointer;
+}
+
+/* Landing Page Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background: #2c3e50;
+    color: white;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+}
+
+/* Hero Section */
+.hero {
+    background: #3498db;
+    color: white;
+    padding: 60px 20px;
+}
+
+.hero h1 {
+    font-size: 36px;
+}
+
+.hero p {
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+/* Features */
+.features {
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
+}
+
+.feature {
+    margin: 10px;
+    padding: 20px;
+    width: 30%;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}
+
+/* Footer */
+footer {
+    background: #2c3e50;
+    color: white;
+    padding: 10px;
+    margin-top: 20px;
+}
+
+
+
+
