@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Log In page</title>
     <style>
-        /* Import Google Font */
+    
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
 
         * {
@@ -23,7 +23,7 @@ body {
             overflow: hidden;
         }
 
-        /* Floating Animation */
+        
         @keyframes float {
             0% { transform: translateY(0px); }
             50% { transform: translateY(-10px); }
@@ -77,7 +77,7 @@ body {
 
 .input-box input:focus + label,
 .input-box input:valid + label {
-    top: -20px; /* Move label further up */
+    top: -20px; 
     font-size: 12px;
     color: #ffcc00;
 }
