@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FinTrack – Smart Money Management</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="logo">FinTrack</div>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Features</a></li>
+                <li><a href="#">Pricing</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="#" class="btn">Get Started</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Take Control of Your Finances with FinTrack</h1>
+            <p>Manage your expenses, track your savings, and achieve financial freedom.</p>
+            <a href="#" class="btn">Get Started</a>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="feature">
+            <h2>Track Expenses</h2>
+            <p>Monitor your spending and stay within your budget.</p>
+        </div>
+        <div class="feature">
+            <h2>Smart Insights</h2>
+            <p>Receive AI-powered financial recommendations.</p>
+        </div>
+        <div class="feature">
+            <h2>Secure & Private</h2>
+            <p>Your financial data is encrypted and protected.</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2025 FinTrack. All rights reserved.</p>
+    </footer>
+</body>
+</html>
