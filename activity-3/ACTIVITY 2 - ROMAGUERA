@@ -1,0 +1,13 @@
+SELECT 
+    sc.name,
+    cs.class_name,
+    cs.class_schedule
+FROM 
+    StudentClass sc
+JOIN 
+    ClassSchedule cs
+ON 
+    sc.id = cs.student_id
+WHERE 
+    sc.name = 'Kim makaminus'
+    AND (cs.class_name = 'CC225' OR cs.class_name = 'filipino' OR cs.class_name = 'english');
