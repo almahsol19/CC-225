@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Web Page</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #208fcf, #17a4db);
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            background: white;
+            width: 320px;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+        h2 {
+            color: #208fcf;
+        }
+        .group {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            width: 100%;
+            margin-bottom: 12px;
+        }
+        .group label {
+            font-size: 14px;
+            margin-bottom: 5px;
+            color: #333;
+        }
+        .group input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+            width: 100%;
+        }
+        button {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        button[name="signup"] {
+            background-color: #28a745;
+            color: white;
+        }
+        button[name="signup"]:hover {
+            background-color: #218838;
+        }
+        button[name="login"] {
+            background-color: #007bff;
+            color: white;
+        }
+        button[name="login"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>LOGIN</h2>
+    <form action="index.php" method="POST">
+        <div class="group">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="Username" required>
+        </div>
+        <div class="group">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="Password" required>
+        </div>
+        <div class="button-group">
+            <button type="submit" name="signup">Sign Up</button>
+            <button type="submit" name="login">Login</button>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>
