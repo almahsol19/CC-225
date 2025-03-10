@@ -1,88 +1,173 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Landing Page</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login/Signup</title>
     <style>
         body {
-            margin: 0;
-            padding: 0;
-            height: 100vh;
+            color: snow;
+            font-family: 'Arial Rounded MT', Arial, sans-serif; 
             display: flex;
-            align-items: center;
             justify-content: center;
-            background-color: #e0eafc;
-            font-family: 'Segoe UI', sans-serif;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-image: url('jullss.png'); 
         }
-        .container {
-            background-color: #fff;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            border-radius: 8px;
-            padding: 25px;
-            width: 350px;
+        .container { 
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            display: block; 
         }
-        .container h2 {
-            color: #444;
+        h1, h2 {
             text-align: center;
             margin-bottom: 20px;
         }
-        .group {
-            display: flex;
-            flex-direction: column;
+        .form-group {
             margin-bottom: 15px;
         }
-        .group label {
+        .form-group label {
+            display: block;
             margin-bottom: 5px;
-            color: #666;
         }
-        .group input {
-            padding: 10px;
+        .form-group input {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
             border: 1px solid #ccc;
             border-radius: 4px;
-            font-size: 16px;
         }
-        .button-group {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 20px;
-        }
-        .button-group button {
-            flex: 1;
-            padding: 10px;
-            margin: 0 5px;
-            background-color: #0069d9;
+        .form-group button {
+            background-color: blue;
+            color: white;
+            padding: 10px 15px;
             border: none;
-            color: #fff;
             border-radius: 4px;
             cursor: pointer;
-            font-size: 16px;
+            width: 100%;
         }
-        .button-group button:hover {
-            background-color: #0056b3;
+        .form-group button:hover {
+            background-color: #0077b6;
+        }
+        .error {
+            color: red;
+            font-size: small;
+            margin-top: 5px;
+        }
+        a {
+            color: white;
+            font-size: 15px;
+            text-align: justify; 
+            display: block; 
+            margin-top: 10px; 
+        }
+        b { 
+            font-family: 'Anchor', Arial, sans-serif; 
+            color: blue;
+            text-decoration: underline;
+            cursor: pointer;
+            font-size: 10px;
+            text-align: justify; 
+            display: block; 
         }
     </style>
 </head>
 <body>
+    <div class="container" id="login-container">
+        <h1>Login</h1>
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div class="form-group">
+                <button type="button" onclick="login()">Login</button>
+                <span class="error" id="loginError"></span> </div>
+            <a>No Account? </a>
+            <b id="showSignup">Create here</b>
+        </form>
+    </div>
 
-<div class="container">
-    <h2>LOGIN</h2>
+    <div class="container" id="signup-container" style="display: none;">
+        <h2>Create Account</h2>
+        <form id="signupForm">
+            <div class="form-group">
+                <label for="signupUsername">Username</label>
+                <input type="text" id="signupUsername" name="signupUsername" required>
+            </div>
+            <div class="form-group">
+                <label for="signupPassword">Password</label>
+                <input type="password" id="signupPassword" name="signupPassword" required>
+            </div>
+            <div class="form-group">
+                <button type="button" onclick="signup()">Sign Up</button>
+                <span class="error" id="signupError"></span>
+            </div>
+            <a>Already have an account?</a>
+            <b id="showLogin">Login</b>
+        </form>
+    </div>
 
-    <form action="index.php" method="POST">
-        <div class="group">
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="Username" required>
-        </div>
-        <div class="group">
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="Password" required>
-        </div>
-        <div class="button-group">
-            <button type="submit" name="signup">Sign Up</button>
-            <button type="submit" name="login">Login</button>
-        </div>
-    </form>
-</div>
+    <script>
+        const loginContainer = document.getElementById('login-container');
+        const signupContainer = document.getElementById('signup-container');
+        const showSignupLink = document.getElementById('showSignup');
+        const showLoginLink = document.getElementById('showLogin');
+        const loginError = document.getElementById('loginError');
+        const signupError = document.getElementById('signupError');
 
+        showSignupLink.addEventListener('click', () => {
+            loginContainer.style.display = 'none';
+            signupContainer.style.display = 'block';
+        });
+
+        showLoginLink.addEventListener('click', () => {
+            signupContainer.style.display = 'none';
+            loginContainer.style.display = 'block';
+        });
+
+        function signup() {
+            const username = document.getElementById('signupUsername').value;
+            const password = document.getElementById('signupPassword').value;
+            signupError.textContent = ''; 
+
+            if (!username || !password) {
+                signupError.textContent = "Please enter username and password.";
+                return;
+            }
+
+            if (localStorage.getItem(username)) {
+                signupError.textContent = "Username already exists!";
+            } else {
+                localStorage.setItem(username, password);
+                alert("Signup successful! Please log in.");
+                loginContainer.style.display = 'block';
+                signupContainer.style.display = 'none';
+            }
+        }
+
+        function login() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            loginError.textContent = ''; 
+
+            const storedPassword = localStorage.getItem(username);
+
+            if (storedPassword && storedPassword === password) {
+                alert("Login successful! Welcome, " + username);
+               
+            } else {
+                loginError.textContent = "Invalid username or password.";
+            }
+        }
+    </script>
 </body>
 </html>
